@@ -1,0 +1,2498 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guide de formation - Formulaires web TAT</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, sans-serif;
+        background: #f2f2f2;
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      
+      header {
+        background: #7aa395;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+
+      header h1 {
+        color: #000;
+        font-size: 2em;
+        margin-bottom: 10px;
+      }
+
+      .version-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        font-size: 0.9em;
+        color: #000;
+      }
+
+      .actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      .action-btn {
+        background: white;
+        color: #000;
+        padding: 8px 16px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 0.9em;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .action-btn:hover {
+        background: #000;
+        color: white;
+      }
+
+      
+      .nav-tabs {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+      }
+
+      .tab-btn {
+        background: white;
+        border: none;
+        padding: 15px 25px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1em;
+        font-weight: 600;
+        color: #000;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s;
+      }
+
+      .tab-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .tab-btn.active {
+        background: #000;
+        color: white;
+      }
+
+      
+      .content-section {
+        display: none;
+      }
+
+      .content-section.active {
+        display: block;
+      }
+
+      .card {
+        background: white;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 25px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .card h2 {
+        color: #1b1a1a;
+        margin-bottom: 20px;
+        font-size: 1.8em;
+        border-left: 5px solid #7aa395;
+        padding-left: 15px;
+      }
+
+      .card h3 {
+        color: #1b1a1a;
+        margin: 25px 0 15px 0;
+        font-size: 1.3em;
+      }
+
+      .card p,
+      .card li {
+        line-height: 1.8;
+        color: #333;
+      }
+
+      .card ul {
+        margin: 15px 0;
+        padding-left: 25px;
+      }
+
+      
+      .info-box {
+        background: #e3f2fd;
+        padding: 20px;
+        border-radius: 8px;
+        margin: 20px 0;
+        border-left: 4px solid #2196f3;
+      }
+
+      .info-box.success {
+        background: #e8f5e9;
+        border-left-color: #4caf50;
+      }
+
+      .info-box.warning {
+        background: #fff4e6;
+        border-left-color: #ff9800;
+      }
+
+      .info-box.important {
+        background: #f8f9fa;
+        border-left-color: #7aa395;
+      }
+
+      .info-box h4 {
+        color: #1b1a1a;
+        margin-bottom: 10px;
+      }
+
+      
+      .flowchart {
+        display: grid;
+        gap: 20px;
+        margin: 30px 0;
+      }
+
+      .flow-step {
+        background: white;
+        border: 2px solid #7aa395;
+        border-radius: 10px;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        transition: all 0.3s;
+      }
+
+      .flow-step:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transform: translateX(5px);
+      }
+
+      .flow-number {
+        background: #7aa395;
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5em;
+        font-weight: bold;
+        flex-shrink: 0;
+      }
+
+      .flow-content h4 {
+        color: #1b1a1a;
+        margin-bottom: 8px;
+      }
+
+      .flow-content p {
+        color: #666;
+        font-size: 0.95em;
+      }
+
+      
+      .section-title {
+        background: linear-gradient(135deg, #7aa395 0%, #5a8377 100%);
+        color: white;
+        padding: 20px 25px;
+        border-radius: 10px;
+        margin: 30px 0 20px 0;
+        box-shadow: 0 3px 10px rgba(122, 163, 149, 0.3);
+        font-size: 1.3em;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .section-title::before {
+        content: "📋";
+        font-size: 1.2em;
+      }
+
+      
+      .professional-step-box {
+        background: linear-gradient(135deg, #7aa395 0%, #5a8377 100%);
+        color: white;
+        padding: 25px 30px;
+        border-radius: 12px;
+        margin: 25px 0;
+        box-shadow: 0 4px 15px rgba(122, 163, 149, 0.3);
+      }
+
+      .professional-step-box h4 {
+        color: white;
+        font-size: 1.2em;
+        margin: 0 0 15px 0;
+        font-weight: 600;
+      }
+
+      .professional-step-box p {
+        color: rgba(255, 255, 255, 0.95);
+        line-height: 1.8;
+        margin: 0;
+      }
+
+      .professional-step-box ul {
+        color: rgba(255, 255, 255, 0.95);
+        line-height: 1.8;
+      }
+
+      .professional-step-box ul li {
+        color: rgba(255, 255, 255, 0.95);
+      }
+
+      
+      .step-card {
+        background: white;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 25px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border-left: 5px solid #7aa395;
+      }
+
+      .step-header {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 20px;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .step-number {
+        background: #7aa395;
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5em;
+        font-weight: bold;
+        flex-shrink: 0;
+      }
+
+      .step-title {
+        flex: 1;
+      }
+
+      .step-title h3 {
+        color: #1b1a1a;
+        font-size: 1.4em;
+        margin: 0 0 5px 0;
+      }
+
+      .toggle-icon {
+        color: #7aa395;
+        font-size: 1.5em;
+        transition: transform 0.3s;
+      }
+
+      .step-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+      }
+
+      .step-card.active .step-content {
+        max-height: none;
+      }
+
+      .step-card.active .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .image-container {
+        margin: 20px 0;
+        text-align: center;
+      }
+
+      .image-container img {
+        max-width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      
+      .two-columns {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin: 20px 0;
+      }
+
+      .column-box {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        border-left: 4px solid #7aa395;
+      }
+
+      
+      .reference-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+
+      .reference-table th {
+        background: #7aa395;
+        color: white;
+        padding: 12px;
+        text-align: left;
+        font-weight: 600;
+      }
+
+      .reference-table td {
+        padding: 12px;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .reference-table tr:hover {
+        background: #f8f9fa;
+      }
+
+      
+      .accordion-item {
+        background: white;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .accordion-header {
+        padding: 18px 20px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 600;
+        color: #333;
+        transition: background 0.3s;
+      }
+
+      .accordion-header:hover {
+        background: #f8f9fa;
+      }
+
+      .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        padding: 0 20px;
+      }
+
+      .accordion-content.active {
+        max-height: 500px;
+        padding: 20px;
+      }
+
+      
+      .video-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 10px;
+        padding: 30px;
+        margin-top: 30px;
+        color: white;
+      }
+
+      .video-section h3 {
+        color: white;
+        margin-bottom: 15px;
+      }
+
+      .video-wrapper {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+        border-radius: 8px;
+        background: #000;
+        margin-top: 20px;
+      }
+
+      .video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      
+      .checklist {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        margin: 20px 0;
+      }
+
+      .checklist-item {
+        padding: 10px 0;
+        display: flex;
+        align-items: start;
+        gap: 10px;
+      }
+
+      .checklist-item input[type="checkbox"] {
+        margin-top: 5px;
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+      }
+
+      
+      .glossary-term {
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .glossary-term:last-child {
+        border-bottom: none;
+      }
+
+      .glossary-term dt {
+        font-weight: 700;
+        color: #1b1a1a;
+        font-size: 1.1em;
+        margin-bottom: 8px;
+      }
+
+      .glossary-term dd {
+        color: #666;
+        line-height: 1.6;
+      }
+
+      
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: #7aa395;
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        z-index: 1000;
+      }
+
+      .back-to-top:hover {
+        background: #000;
+        transform: translateY(-5px);
+      }
+
+      .back-to-top.show {
+        display: flex;
+      }
+
+      
+      @media (max-width: 768px) {
+        header h1 {
+          font-size: 1.5em;
+        }
+
+        .two-columns {
+          grid-template-columns: 1fr;
+        }
+
+        .version-info {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+
+        .step-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+
+      @media print {
+        /* Masquer les en-têtes et pieds de page du navigateur */
+        @page {
+          margin: 0.5cm;
+          size: auto;
+        }
+
+        /* Masquer les éléments de navigation - FORCER à 0 */
+        .nav-tabs,
+        .action-btn,
+        .back-to-top,
+        .actions {
+          display: none !important;
+          height: 0 !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          min-height: 0 !important;
+          line-height: 0 !important;
+        }
+
+        nav {
+          display: none !important;
+          height: 0 !important;
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+
+        /* Masquer TOUTES les sections vidéo */
+        .video-section {
+          display: none !important;
+        }
+
+        /* Afficher tout le contenu */
+        .content-section {
+          display: block !important;
+          margin-top: 0 !important;
+          padding-top: 0 !important;
+        }
+
+        /* Ouvrir tous les accordions FAQ automatiquement */
+        .accordion-content {
+          display: block !important;
+          max-height: none !important;
+          padding: 20px !important;
+          background: #f8f9fa;
+          border: 1px solid #dee2e6;
+          border-top: none;
+          margin-bottom: 15px;
+        }
+
+        /* Masquer les flèches des accordions */
+        .accordion-header span:last-child {
+          display: none !important;
+        }
+
+        /* Ouvrir les étapes expandables */
+        .step-content {
+          max-height: none !important;
+        }
+
+        body {
+          background: white;
+          padding: 0 !important;
+          margin: 0 !important;
+        }
+
+        .container {
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+
+        /* =======================================
+           PAGE DE COUVERTURE - TITRE CENTRÉ
+           ======================================= */
+        header {
+          /* Prendre toute la hauteur de la page */
+          min-height: 100vh !important;
+          height: 100vh !important;
+          
+          /* Centrer le contenu verticalement et horizontalement */
+          display: flex !important;
+          flex-direction: column !important;
+          justify-content: center !important;
+          align-items: center !important;
+          
+          /* Styles visuels */
+          background: linear-gradient(135deg, #7aa395 0%, #5a8377 100%) !important;
+          margin: 0 !important;
+          padding: 40px !important;
+          border-radius: 0 !important;
+          box-shadow: none !important;
+          
+          /* Forcer le saut de page après le header */
+          page-break-after: always !important;
+          text-align: center !important;
+        }
+
+        header h1 {
+          font-size: 3em !important;
+          color: white !important;
+          margin: 0 0 30px 0 !important;
+          line-height: 1.3 !important;
+        }
+
+        header .version-info {
+          color: white !important;
+          font-size: 1.2em !important;
+          border: none !important;
+          padding: 0 !important;
+          margin: 0 !important;
+        }
+
+        header .version-info strong {
+          color: white !important;
+        }
+
+        /* Le contenu commence sur une nouvelle page */
+        #contexte {
+          page-break-before: always !important;
+          margin-top: 0 !important;
+          padding-top: 20px !important;
+        }
+
+        /* Éviter les sauts de page inappropriés */
+        .card,
+        .accordion-item,
+        .flow-step,
+        .info-box,
+        .professional-step-box {
+          page-break-inside: avoid;
+        }
+
+        h2, h3, h4 {
+          page-break-after: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Guide de formation interne - Formulaires web</h1>
+        <div class="version-info">
+          <div>
+            <strong>Version 1.0</strong> | Dernière mise à jour : 05 décembre
+            2025
+          </div>
+          <div class="actions">
+            <button class="action-btn" onclick="window.print()">
+              📥 Exporter le guide
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <nav class="nav-tabs">
+        <button class="tab-btn active" onclick="showTab('contexte')">
+          Contexte & Objectifs
+        </button>
+        <button class="tab-btn" onclick="showTab('vue-ensemble')">
+          Vue d'ensemble
+        </button>
+        <button class="tab-btn" onclick="showTab('guide-detaille')">
+          Processus détaillé
+        </button>
+        <button class="tab-btn" onclick="showTab('processus-rt')">
+          Impacts sur SISTA
+        </button>
+        <button class="tab-btn" onclick="showTab('faq')">
+          FAQ & Dépannage
+        </button>
+      </nav>
+
+      
+      <div id="contexte" class="content-section active">
+        <div class="card">
+          <h2>Contexte du projet</h2>
+          <p>
+            Le projet de formulaires web a pour objectif de rendre disponible en mode « services en ligne » l'ensemble des formulaires du TAT sur le site Web. Ainsi, tous les formulaires disponibles en ligne pourront être remplis à l'écran, puis directement soumis au TAT. La version Word restera disponible pour ceux qui ne désirent pas utiliser les formulaires en ligne.
+          </p>
+
+          <h3>Formulaires pour Relation du travail et Construction et qualification professionnelle</h3>
+          <p>Les formulaires Word reconvertis en formulaires Web sont les suivants :</p>
+          <ul>
+            <li>Plainte pour harcèlement psychologique – Loi sur le statut professionnel des artistes</li>
+            <li>Contestation d'une décision d'un organisme</li>
+            <li>Contestation d'une décision de la CNESST – Agences de placement de personnel et de recrutement de travailleurs(-euses) étrangers(-ères) temporaires</li>
+            <li>Plainte contre une association de ressources de type familial et de certaines ressources intermédiaires (RTF/RI)</li>
+            <li>Plainte pour une pratique interdite par la Loi sur le statut professionnel des artistes</li>
+            <li>Plainte pour un congédiement, une suspension ou une autre mesure</li>
+            <li>Plainte contre une association de salarié(e)s</li>
+            <li>Plainte relative à l'exercice d'une liberté syndicale</li>
+            <li>Plainte contre une association de salarié(e)s – Secteur de la construction</li>
+            <li>Plainte contre une association de personnes responsables d'un service de garde en milieu familial (RSG)</li>
+            <li>Requête en accréditation</li>
+            <li>Demande de modification(s) au dossier d'accréditation</li>
+            <li>Demande de révocation d'une accréditation</li>
+            <li>Requête en révision ou en révocation</li>
+            <li>Demande de reconnaissance – Association de ressources de type familial et de certaines ressources intermédiaires (RTF/RI)</li>
+            <li>Demande de reconnaissance – Association de personnes responsables d'un service de garde en milieu familial (RSG)</li>
+              <li>Autre type de recours</li>
+          
+          </ul>
+
+          <h3>Formulaire pour Santé et sécurité du travail</h3>
+          <p>Pour SST, les changements sont mineurs. Seul ce formulaire est touché par le projet :</p>
+          <ul>
+            <li><strong>Contestation d'une décision de la CNESST</strong></li>
+          </ul>
+          <p>
+            Le formulaire de contestation d'une décision de la CNESST est déjà présent en ligne. La seule amélioration définie dans la portée du projet est de le rendre plus attrayant et convivial avec un nouveau style, tout en gardant les mêmes fonctionnalités.
+          </p>
+
+          <h3>Formulaires communs</h3>
+          <p>Deux nouveaux formulaires pour SST et RT :</p>
+          <ul>
+            <li><strong>Désistement d'un acte introductif</strong></li>
+            <li><strong>Bon de commande - Copies d'enregistrements d'une audience</strong></li>
+          </ul>
+          <p>
+            Le formulaire Désistement d'un acte introductif est un nouveau formulaire en ligne qui concerne autant SST que RT et qui permet de déposer une demande de désistement par la partie demanderesse ou son représentant.
+          </p>
+          <p>
+            Le formulaire Bon de commande - Copies d'enregistrements d'une audience est un nouveau formulaire en ligne qui concerne autant SST que RT et qui permet de commander une ou plusieurs copies d'enregistrement d'audience d'un dossier par une partie au dossier ou une partie tierce.
+          </p>
+
+       
+
+          <h3>Objectif du projet</h3>
+          <div class="info-box important">
+            <h4>
+              Améliorer l'expérience numérique pour les clientèles et
+              utilisateurs
+            </h4>
+            <ul>
+              <li>
+                Faciliter et simplifier les démarches lors du dépôt des demandes
+              </li>
+              <li>Augmenter la qualité des services rendus</li>
+            </ul>
+          </div>
+
+          <h3>Bénéfices attendus</h3>
+          <div class="two-columns">
+            <div class="column-box">
+              <h4>Pour le client et le TAT</h4>
+              <ul>
+                <li>Gain de temps et réduction des coûts</li>
+                <li>Automatisation du traitement</li>
+                <li>Réduction de l'intervention humaine</li>
+                <li>Élimination du papier</li>
+              </ul>
+            </div>
+            <div class="column-box">
+              <h4>Qualité et performance</h4>
+              <ul>
+                <li>Amélioration de l'image du TAT</li>
+                <li>Satisfaction clientèle accrue</li>
+                <li>Diminution des erreurs</li>
+                <li>Meilleure qualité des données</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      <div id="vue-ensemble" class="content-section">
+        <div class="card">
+          <h2>Processus en 5 étapes</h2>
+          <p>
+            <strong>Durée estimée :</strong> 15 à 20 minutes |
+            <strong>Prérequis :</strong> Tous les documents pertinents à déposer pour la demande
+          </p>
+
+          <div class="flowchart">
+            <div class="flow-step">
+              <div class="flow-number">1</div>
+              <div class="flow-content">
+                <h4>Remplir les informations</h4>
+                <p>
+                  Identification des parties, saisie manuelle ou pré-remplissage
+                  via SISTA
+                </p>
+              </div>
+            </div>
+
+            <div class="flow-step">
+              <div class="flow-number">2</div>
+              <div class="flow-content">
+                <h4>Téléverser les documents</h4>
+                <p>Dépôt des pièces jointes requises (PDF, max 20 documents)</p>
+              </div>
+            </div>
+
+            <div class="flow-step">
+              <div class="flow-number">3</div>
+              <div class="flow-content">
+                <h4>Valider et signer</h4>
+                <p>Vérification du résumé et signature électronique</p>
+              </div>
+            </div>
+
+            <div class="flow-step">
+              <div class="flow-number">4</div>
+              <div class="flow-content">
+                <h4>Intégration SISTA</h4>
+                <p>Transmission automatique et création du dossier</p>
+              </div>
+            </div>
+
+            <div class="flow-step">
+              <div class="flow-number">5</div>
+              <div class="flow-content">
+                <h4>Confirmation</h4>
+                <p>Accusé de réception à l'écran et par courriel</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-box warning">
+            <h4>Points importants à retenir</h4>
+            <ul>
+              <li>
+                <strong>Pas de sauvegarde intermédiaire :</strong> Préparez tous
+                vos documents avant de commencer
+              </li>
+              <li>
+                <strong>Champs obligatoires :</strong> Identifiés par un
+                astérisque (*)
+              </li>
+              <li>
+                <strong>Signature requise pour la majorité des formulaires:</strong> Deux méthodes de signature sont disponibles : dessinée ou téléversée.
+              </li>
+              <li>
+                <strong>Vérification d’identité obligatoire pour deux formulaires:</strong> Un code de vérification est transmis au déposant afin de confirmer son identité.
+              </li>
+              <li>
+                <strong>Confirmation :</strong> Conservez votre numéro de
+                référence SISTA
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+      <div id="guide-detaille" class="content-section">
+        <div class="card">
+          <h2>Processus détaillé pas à pas</h2>
+          <p>
+            Cliquez sur chaque étape pour voir les instructions complètes avec
+            captures d'écran.
+          </p>
+        </div>
+
+        
+        <div class="step-card">
+          <div class="step-header" onclick="toggleStep(this)">
+            <div class="step-number">1</div>
+            <div class="step-title">
+              <h3>Remplir les informations du formulaire</h3>
+            </div>
+            <div class="toggle-icon">▼</div>
+          </div>
+          <div class="step-content">
+            <div
+              style="
+                background: linear-gradient(135deg, #7aa395 0%, #5a8377 100%);
+                border-radius: 12px;
+                padding: 5px 5px;
+                margin: 15px 0 25px 0;
+                box-shadow: 0 4px 15px rgba(122, 163, 149, 0.3);
+              "
+            >
+              <h3
+                style="
+                  color: white;
+                  font-size: 1.2em;
+                  margin: 0;
+                  font-weight: 700;
+                  display: flex;
+                  align-items: center;
+                  gap: 12px;
+                  letter-spacing: 0.3px;
+                "
+              >
+                <span style="font-size: 1.4em">📝</span>Introduction du
+                formulaire
+              </h3>
+            </div>
+            <p>
+              Avant de commencer la saisie des informations, le déposant doit
+              prendre connaissance des informations importantes et compléter les
+              éléments essentiels dans la section introduction.
+            </p>
+
+            <div class="info-box warning">
+              <h4>⚠️ Renseignements nécessaires</h4>
+              <ul>
+                <li>
+                  Vos coordonnées et celles de votre représentant(e), s'il y a
+                  lieu
+                </li>
+                <li>
+                  Les coordonnées de l'association accréditée (si applicable)
+                </li>
+                <li>Les coordonnées de l'employeur</li>
+                <li>
+                  Numéro de dossier ou d'accréditation (pour certains types de
+                  demandes)
+                </li>
+              </ul>
+            </div>
+
+            <div
+              style="
+                background: #e3f2fd;
+                padding: 15px 20px;
+                border-radius: 8px;
+                margin: 20px 0;
+                border-left: 4px solid #2196f3;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+              "
+            >
+              <span style="font-size: 1.5em">⏱️</span>
+              <div>
+                <strong>Temps de remplissage :</strong> Prévoyez environ 20-30
+                minutes pour remplir le formulaire
+              </div>
+            </div>
+
+            <div
+              style="
+                background: #fff4e6;
+                padding: 15px 20px;
+                border-radius: 8px;
+                margin: 20px 0;
+                border-left: 4px solid #ff9800;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+              "
+            >
+              <span style="font-size: 1.5em">⭐</span>
+              <div>
+                <strong>Champs obligatoires :</strong> Remplissez tous les
+                champs marqués d'un astérisque (*)
+              </div>
+            </div>
+
+            <div
+              style="
+                background: #ffebee;
+                padding: 15px 20px;
+                border-radius: 8px;
+                margin: 20px 0;
+                border-left: 4px solid #f44336;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+              "
+            >
+              <span style="font-size: 1.5em">💾</span>
+              <div>
+                <strong>Sauvegarde :</strong> Assurez-vous d'avoir le temps de
+                remplir complètement le formulaire, car celui-ci ne peut pas
+                être sauvegardé pour plus tard
+              </div>
+            </div>
+
+            <div
+              style="
+                background: #e8f5e9;
+                padding: 15px 20px;
+                border-radius: 8px;
+                margin: 20px 0;
+                border-left: 4px solid #4caf50;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+              "
+            >
+              <span style="font-size: 1.5em">📄</span>
+              <div>
+                <strong>Copie finale :</strong> Une fois votre formulaire
+                transmis, vous recevrez un accusé de réception et une copie de
+                votre formulaire à l'adresse courriel indiquée
+              </div>
+            </div>
+
+            <div class="info-box">
+              <h4>ℹ️ Important</h4>
+              <p>
+                Vous devez remplir
+                <strong>toutes les sections du formulaire</strong> et y joindre
+                tous les documents pertinents. Vous devez également apposer
+                votre signature électronique (section Validation).
+              </p>
+            </div>
+
+            <h4 style="margin-top: 30px">
+              Éléments à compléter dans l'introduction
+            </h4>
+
+            <div
+              style="
+                background: #f8f9fa;
+                padding: 20px;
+                border-radius: 10px;
+                margin: 20px 0;
+                border-left: 4px solid #7aa395;
+              "
+            >
+              <p style="margin-bottom: 15px">
+                <strong>1. Type de déposant :</strong>
+              </p>
+              <ul
+                style="
+                  list-style: disc;
+                  padding-left: 25px;
+                  line-height: 1.8;
+                  margin-bottom: 20px;
+                "
+              >
+                <li>
+                  <strong>Requérant(e) :</strong> La personne qui dépose la
+                  demande pour elle-même
+                </li>
+                <li>
+                  <strong>Représentant(e) :</strong> Une personne autorisée qui
+                  dépose la demande au nom d'un requérant
+                </li>
+              </ul>
+
+              <p style="margin-bottom: 15px">
+                <strong>2. Bureau de traitement :</strong>
+              </p>
+              <p style="padding-left: 25px; line-height: 1.8">
+                Sélectionner le bureau régional responsable de la région où
+                réside le déposant. Cette information permet de diriger la
+                demande vers le bon bureau du Tribunal.
+              </p>
+            </div>
+
+            <div class="image-container">
+              <img
+                src="images/intro.png"
+                alt="Sélection du type de déposant et du bureau"
+              />
+              <p style="font-size: 0.9em; color: #666; margin-top: 10px">
+                Sélection du type de déposant et du bureau
+              </p>
+            </div>
+
+            <div
+              style="
+                background: linear-gradient(135deg, #7aa395 0%, #5a8377 100%);
+                border-radius: 12px;
+                padding: 5px 5px;
+                margin: 35px 0 25px 0;
+                box-shadow: 0 4px 15px rgba(122, 163, 149, 0.3);
+              "
+            >
+              <h3
+                style="
+                  color: white;
+                  font-size: 1.2em;
+                  margin: 0;
+                  font-weight: 700;
+                  display: flex;
+                  align-items: center;
+                  gap: 12px;
+                  letter-spacing: 0.3px;
+                "
+              >
+                <span style="font-size: 1.4em">👥</span>Identification des
+                parties
+              </h3>
+            </div>
+
+            <p>
+              Une fois l'introduction complétée, le formulaire passe à l'étape
+              d'identification des parties. Cette section vise à identifier
+              correctement les participants impliqués dans la demande
+              (requérant, employeur, association, etc.).
+            </p>
+
+            <p style="margin-top: 15px">
+              Selon le type de formulaire, deux méthodes d'identification sont
+              possibles. Le système adapte automatiquement les champs à remplir
+              :
+            </p>
+
+            <div class="info-box">
+              <h4>Type A — Identification manuelle</h4>
+              <p>
+                Utilisée dans les formulaires où aucune donnée préalable n'est
+                disponible dans SISTA (ex. nouvelles demandes sans dossier
+                existant).
+              </p>
+              <p style="margin-top: 10px">
+                <strong
+                  >Le déposant saisit manuellement les coordonnées complètes des
+                  différentes parties :</strong
+                >
+              </p>
+              <ul style="margin-top: 10px">
+                <li>
+                  <strong>Plaignant(e)</strong> : nom, prénom, adresse,
+                  téléphone, courriel
+                </li>
+                <li>
+                  <strong>Représentant(e) (optionnel)</strong> : coordonnées
+                  complètes
+                </li>
+                <li>
+                  <strong>Employeur</strong> : raison sociale, adresse, contact
+                </li>
+                <li>
+                  <strong>Association accréditée (si applicable)</strong> : nom
+                  et coordonnées
+                </li>
+              </ul>
+            </div>
+
+            <div class="image-container">
+              <img
+                src="images/IdentificationPartie.png"
+                alt="Exemple d'identification des parties"
+              />
+              <p style="font-size: 0.9em; color: #666; margin-top: 10px">
+                Exemple d'identification des parties
+              </p>
+            </div>
+            <div class="info-box success">
+              <h4>Type B — Identification automatique via SISTA</h4>
+              <p>
+                Pour d'autres formulaires, l'identification se fait
+                automatiquement à partir des données déjà enregistrées dans
+                SISTA. Cette méthode permet un gain de temps considérable et
+                réduit les erreurs de saisie.
+              </p>
+
+              <p style="margin-top: 15px">
+                <strong
+                  >Deux options sont possibles selon le contexte de la demande
+                  :</strong
+                >
+              </p>
+
+              <div style="margin-top: 15px; padding-left: 20px">
+                <p style="margin-bottom: 10px">
+                  <strong>Option 1 : Numéro de dossier</strong>
+                </p>
+                <p style="padding-left: 15px; margin-bottom: 15px">
+                  Utilisé pour les formulaires liés à un dossier existant au
+                  Tribunal. En saisissant le numéro de dossier, le système SISTA
+                  récupère automatiquement toutes les informations des parties
+                  associées à ce dossier.
+                </p>
+
+                <div class="image-container">
+                  <img
+                    src="images/NumDoss.png"
+                    alt="Exemple d'identification par numéro de dossier"
+                  />
+                  <p style="font-size: 0.9em; color: #666; margin-top: 10px">
+                    Saisie du numéro de dossier pour récupération automatique
+                    des informations
+                  </p>
+                </div>
+                <p style="padding-left: 15px; margin-top: 15px">
+                  Après avoir saisi le numéro correspondant, le système SISTA
+                  récupère automatiquement les informations des parties
+                  (requérant, employeur, représentant, etc.) et les affiche à
+                  l'écran pour validation.
+                </p>
+
+                <div class="image-container">
+                  <img
+                    src="images/parties.png"
+                    alt="Exemple des informations récupérés de SISTA"
+                  />
+                  <p style="font-size: 0.9em; color: #666; margin-top: 10px">
+                    Exemple des informations récupérés de SISTA
+                  </p>
+                </div>
+
+                <p style="margin-top: 20px; margin-bottom: 10px">
+                  <strong>Option 2 : Numéro d'accréditation</strong>
+                </p>
+                <p style="padding-left: 15px; margin-bottom: 15px">
+                  Utilisé pour les formulaires liés à une accréditation en
+                  vigueur. En saisissant le numéro d'accréditation, le système
+                  récupère les informations de l'association accréditée et les
+                  parties concernées.
+                </p>
+
+                <div class="image-container">
+                  <img
+                    src="images/NumAccr.png"
+                    alt="Exemple d'identification par numéro d'accréditation"
+                  />
+                  <p style="font-size: 0.9em; color: #666; margin-top: 10px">
+                    Saisie du numéro d'accréditation
+                  </p>
+                </div>
+                <p style="padding-left: 15px; margin-top: 15px">
+                  Après avoir saisi le numéro d'accréditation, le système SISTA
+                  récupère automatiquement les informations des parties et les
+                  affiche à l'écran pour validation.
+                </p>
+
+                <div class="image-container">
+                  <img
+                    src="images/parties1.png"
+                    alt="Exemple des informations récupérés de SISTA"
+                  />
+                  <p style="font-size: 0.9em; color: #666; margin-top: 10px">
+                    Exemple des informations récupérés de SISTA
+                  </p>
+                </div>
+              </div>
+              <div class="info-box">
+                <strong>Conseil :</strong> Vérifiez toujours que les
+                informations affichées sont correctes avant de continuer. Si ce
+                n'est pas le cas, saisissez le bon numéro d'accréditation ou de
+                dossier.
+              </div>
+            </div>
+
+            <div
+              style="
+                background: linear-gradient(135deg, #7aa395 0%, #5a8377 100%);
+                border-radius: 12px;
+                padding: 5px 5px;
+                margin: 35px 0 25px 0;
+                box-shadow: 0 4px 15px rgba(122, 163, 149, 0.3);
+              "
+            >
+              <h3
+                style="
+                  color: white;
+                  font-size: 1.2em;
+                  margin: 0;
+                  font-weight: 700;
+                  display: flex;
+                  align-items: center;
+                  gap: 12px;
+                  letter-spacing: 0.3px;
+                "
+              >
+                <span style="font-size: 1.4em">📋</span>Détail de la demande
+              </h3>
+            </div>
+            <p>
+              Dans les deux cas, une fois l'identification complétée — que ce
+              soit manuellement ou automatiquement — le déposant passe à l'étape
+              suivante <strong>« Détail de la demande »</strong>.
+            </p>
+
+            <p style="margin-top: 15px">
+              Cette section permet de décrire précisément l'objet de la demande.
+              Le contenu varie selon le type de formulaire sélectionné, mais
+              comprend généralement :
+            </p>
+
+            <div
+              style="
+                background: #f8f9fa;
+                padding: 20px;
+                border-radius: 10px;
+                margin: 20px 0;
+                border-left: 4px solid #7aa395;
+              "
+            >
+              <ul
+                style="list-style: disc; padding-left: 25px; line-height: 1.8"
+              >
+                <li>
+                  <strong>Dates importantes :</strong> Date de l'événement, date
+                  de décision, etc
+                </li>
+                <li>
+                  <strong>Description détaillée :</strong> Exposé des faits,
+                  motifs de la demande, arguments
+                </li>
+                <li>
+                  <strong>Modifications demandées :</strong> (si applicable)
+                  Changements souhaités
+                </li>
+                <li>
+                  <strong>Objectif de la demande :</strong> Solutions
+                  recherchées
+                </li>
+              </ul>
+            </div>
+
+            <div class="image-container">
+              <img
+                src="images/DétailDemande.png"
+                alt="Exemple de détail d'une demande"
+              />
+              <p style="font-size: 0.9em; color: #666; margin-top: 10px">
+                Exemple de détail d'une demande
+              </p>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="step-card">
+          <div class="step-header" onclick="toggleStep(this)">
+            <div class="step-number">2</div>
+            <div class="step-title">
+              <h3>Téléverser les documents</h3>
+            </div>
+            <div class="toggle-icon">▼</div>
+          </div>
+          <div class="step-content">
+            <p>
+              Selon le type de demande, le dépôt de documents peut être
+              obligatoire ou facultatif. Le système affiche automatiquement la
+              liste des documents requis.
+            </p>
+
+            <h4>📄 Formats acceptés et limites</h4>
+            <table class="reference-table">
+              <thead>
+                <tr>
+                  <th>Type de fichier</th>
+                  <th>Format</th>
+                  <th>Taille maximale</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Documents et pièces jointes</td>
+                  <td>PDF uniquement</td>
+                  <td>100 Mo par fichier</td>
+                  <td>20 fichiers peuvent être téléversés</td>
+                </tr>
+              </tbody>
+            </table>
+
+            
+
+            <div class="image-container">
+              <img src="images/dépôt.png" alt="Interface de téléversement" />
+              <p style="font-size: 0.9em; color: #666; margin-top: 10px">
+                Exemple d'interface pour le téléversement des documents
+              </p>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="step-card">
+          <div class="step-header" onclick="toggleStep(this)">
+            <div class="step-number">3</div>
+            <div class="step-title">
+              <h3>Valider et signer</h3>
+            </div>
+            <div class="toggle-icon">▼</div>
+          </div>
+          <div class="step-content">
+            <div style="display: grid; gap: 20px; margin: 25px 0">
+              
+              <div
+                style="
+                  background: #f8f9fa;
+                  border-left: 5px solid #7aa395;
+                  border-radius: 10px;
+                  padding: 25px;
+                  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                "
+              >
+                <h4
+                  style="
+                    color: #1b1a1a;
+                    font-size: 1.1em;
+                    margin: 0 0 12px 0;
+                    font-weight: 600;
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                  "
+                >
+                  <span
+                    style="
+                      background: #7aa395;
+                      color: white;
+                      width: 32px;
+                      height: 32px;
+                      border-radius: 50%;
+                      display: inline-flex;
+                      align-items: center;
+                      justify-content: center;
+                      font-weight: bold;
+                      font-size: 1em;
+                      flex-shrink: 0;
+                    "
+                    >1</span
+                  >
+                  Consultez le résumé affiché
+                </h4>
+                <p
+                  style="
+                    margin: 0;
+                    color: #555;
+                    line-height: 1.7;
+                    padding-left: 44px;
+                  "
+                >
+                  Le système génère automatiquement un récapitulatif de toutes
+                  vos informations saisies.
+                </p>
+              </div>
+
+              
+              <div
+                style="
+                  background: #f8f9fa;
+                  border-left: 5px solid #7aa395;
+                  border-radius: 10px;
+                  padding: 25px;
+                  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                "
+              >
+                <h4
+                  style="
+                    color: #1b1a1a;
+                    font-size: 1.1em;
+                    margin: 0 0 12px 0;
+                    font-weight: 600;
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                  "
+                >
+                  <span
+                    style="
+                      background: #7aa395;
+                      color: white;
+                      width: 32px;
+                      height: 32px;
+                      border-radius: 50%;
+                      display: inline-flex;
+                      align-items: center;
+                      justify-content: center;
+                      font-weight: bold;
+                      font-size: 1em;
+                      flex-shrink: 0;
+                    "
+                    >2</span
+                  >
+                  Vérifiez attentivement toutes les informations
+                </h4>
+                <p
+                  style="
+                    margin: 0;
+                    color: #555;
+                    line-height: 1.7;
+                    padding-left: 44px;
+                  "
+                >
+                  Prenez le temps de relire chaque section pour vous assurer de
+                  l'exactitude des données.
+                </p>
+              </div>
+
+              
+              <div
+                style="
+                  background: #f8f9fa;
+                  border-left: 5px solid #7aa395;
+                  border-radius: 10px;
+                  padding: 25px;
+                  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                "
+              >
+                <h4
+                  style="
+                    color: #1b1a1a;
+                    font-size: 1.1em;
+                    margin: 0 0 12px 0;
+                    font-weight: 600;
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                  "
+                >
+                  <span
+                    style="
+                      background: #7aa395;
+                      color: white;
+                      width: 32px;
+                      height: 32px;
+                      border-radius: 50%;
+                      display: inline-flex;
+                      align-items: center;
+                      justify-content: center;
+                      font-weight: bold;
+                      font-size: 1em;
+                      flex-shrink: 0;
+                    "
+                    >3</span
+                  >
+                  Ajoutez votre signature électronique
+                </h4>
+                <p
+                  style="
+                    margin: 0;
+                    color: #555;
+                    line-height: 1.7;
+                    padding-left: 44px;
+                  "
+                >
+                  Choisissez l'une des deux méthodes de signature disponibles
+                  ci-dessous.
+                </p>
+              </div>
+
+              
+              <div
+                style="
+                  background: #f8f9fa;
+                  border-left: 5px solid #7aa395;
+                  border-radius: 10px;
+                  padding: 25px;
+                  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                "
+              >
+                <h4
+                  style="
+                    color: #1b1a1a;
+                    font-size: 1.1em;
+                    margin: 0 0 12px 0;
+                    font-weight: 600;
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                  "
+                >
+                  <span
+                    style="
+                      background: #7aa395;
+                      color: white;
+                      width: 32px;
+                      height: 32px;
+                      border-radius: 50%;
+                      display: inline-flex;
+                      align-items: center;
+                      justify-content: center;
+                      font-weight: bold;
+                      font-size: 1em;
+                      flex-shrink: 0;
+                    "
+                    >4</span
+                  >
+                  Cliquez sur "Soumettre"
+                </h4>
+                <p
+                  style="
+                    margin: 0;
+                    color: #555;
+                    line-height: 1.7;
+                    padding-left: 44px;
+                  "
+                >
+                  Finalisez votre demande en soumettant le formulaire au
+                  système.
+                </p>
+              </div>
+            </div>
+
+            <h4>✏️ Méthodes de signature électronique</h4>
+            <div class="two-columns">
+              <div class="column-box">
+                <h4>Méthode 1 : Télécharger une image</h4>
+                <table class="reference-table" style="margin-top: 15px">
+                  <tbody>
+                    <tr>
+                      <td><strong>Formats acceptés</strong></td>
+                      <td>JPG, PNG, BMP, GIF</td>
+                    </tr>
+
+                    <tr>
+                      <td><strong>Restrictions</strong></td>
+                      <td>GIF animé non accepté</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p style="margin-top: 10px">
+                  <em
+                    >Idéal si vous avez déjà une image de votre signature
+                    numérisée.</em
+                  >
+                </p>
+              </div>
+              <div class="column-box">
+                <h4>Méthode 2 : Dessiner à l'écran</h4>
+                <ul style="margin-top: 15px">
+                  <li><strong>Outil :</strong> Souris ou écran tactile</li>
+                  <li>
+                    <strong>Fonctionnalités :</strong> Possibilité d'effacer et
+                    recommencer
+                  </li>
+                  <li>
+                    <strong>Capture :</strong> Automatique lors de la validation
+                  </li>
+                </ul>
+                <p style="margin-top: 10px">
+                  <em>Recommandé pour une signature rapide et directe.</em>
+                </p>
+              </div>
+            </div>
+
+            <h4 style="margin-top: 30px">✅ Attestation et consentements</h4>
+            <p style="margin-bottom: 20px; color: #555">
+              Avant de pouvoir soumettre votre formulaire, vous devez cocher
+              <strong>deux cases obligatoires</strong> pour confirmer que :
+            </p>
+
+            <div
+              style="
+                background: #e8f5e9;
+                border-left: 5px solid #4caf50;
+                border-radius: 8px;
+                padding: 20px;
+                margin: 20px 0;
+              "
+            >
+              <ul style="list-style: none; padding: 0; margin: 0">
+                <li
+                  style="
+                    margin-bottom: 15px;
+                    display: flex;
+                    align-items: start;
+                    gap: 12px;
+                  "
+                >
+                  <span style="color: #4caf50; font-size: 1.3em; flex-shrink: 0"
+                    >✓</span
+                  >
+                  <div>
+                    <strong style="color: #2e7d32"
+                      >Vous confirmez que toutes les informations fournies dans
+                      le formulaire sont véridiques et complètes.</strong
+                    ><br />
+                  </div>
+                </li>
+                <li style="display: flex; align-items: start; gap: 12px">
+                  <span style="color: #4caf50; font-size: 1.3em; flex-shrink: 0"
+                    >✓</span
+                  >
+                  <div>
+                    <strong style="color: #2e7d32"
+                      >Vous consentez à l'utilisation de vos données
+                      personnelles aux fins de traitement de votre demande, et
+                      vous comprenez que les informations contenues dans votre
+                      dossier pourraient être rendues publiques conformément aux
+                      lois applicables.</strong
+                    ><br />
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="image-container">
+              <img src="images/signature.png" alt="Écran de la signature" />
+              <p style="font-size: 0.9em; color: #666; margin-top: 10px">
+                Écran de la signature
+              </p>
+            </div>
+
+            <div class="info-box warning">
+              <strong>Validation d'identité requise</strong>
+              <p>
+                Pour certaines demandes (désistement, copie d'enregistrement),
+                vous devez valider votre identité avant la signature.
+              </p>
+            </div>
+
+            <div class="image-container">
+              <img src="images/Vérification.png" alt="Écran de la signature" />
+              <p style="font-size: 0.9em; color: #666; margin-top: 10px">
+                Écran de vérification d'identité (si requis)
+              </p>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="step-card">
+          <div class="step-header" onclick="toggleStep(this)">
+            <div class="step-number">4</div>
+            <div class="step-title">
+              <h3>Intégration automatique avec SISTA</h3>
+            </div>
+            <div class="toggle-icon">▼</div>
+          </div>
+          <div class="step-content">
+            <p style="font-size: 1.05em; margin-bottom: 25px; color: #555">
+              Une fois le formulaire soumis, trois processus automatiques
+              s'exécutent en parallèle :
+            </p>
+
+            <div style="display: grid; gap: 20px; margin: 25px 0">
+              
+              <div
+                style="
+                  background: #f8f9fa;
+                  border-left: 5px solid #7aa395;
+                  border-radius: 10px;
+                  padding: 25px;
+                  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                "
+              >
+                <h4
+                  style="
+                    color: #1b1a1a;
+                    font-size: 1.1em;
+                    margin: 0 0 12px 0;
+                    font-weight: 600;
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                  "
+                >
+                  <span
+                    style="
+                      background: #7aa395;
+                      color: white;
+                      width: 32px;
+                      height: 32px;
+                      border-radius: 50%;
+                      display: inline-flex;
+                      align-items: center;
+                      justify-content: center;
+                      font-weight: bold;
+                      font-size: 1em;
+                      flex-shrink: 0;
+                    "
+                    >1</span
+                  >
+                  Génération d'un numéro de référence unique
+                </h4>
+                <p
+                  style="
+                    margin: 0;
+                    color: #555;
+                    line-height: 1.7;
+                    padding-left: 44px;
+                  "
+                >
+                  Le système crée automatiquement un identifiant unique pour
+                  votre demande.
+                </p>
+              </div>
+
+              
+              <div
+                style="
+                  background: #f8f9fa;
+                  border-left: 5px solid #7aa395;
+                  border-radius: 10px;
+                  padding: 25px;
+                  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                "
+              >
+                <h4
+                  style="
+                    color: #1b1a1a;
+                    font-size: 1.1em;
+                    margin: 0 0 12px 0;
+                    font-weight: 600;
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                  "
+                >
+                  <span
+                    style="
+                      background: #7aa395;
+                      color: white;
+                      width: 32px;
+                      height: 32px;
+                      border-radius: 50%;
+                      display: inline-flex;
+                      align-items: center;
+                      justify-content: center;
+                      font-weight: bold;
+                      font-size: 1em;
+                      flex-shrink: 0;
+                    "
+                    >2</span
+                  >
+                  Création des tâches et notification
+                </h4>
+                <ul
+                  style="
+                    margin: 0;
+                    padding-left: 44px;
+                    color: #555;
+                    line-height: 1.8;
+                  "
+                >
+                  <li>
+                    Création automatique d'une tâche dans le bureau régional
+                    concerné
+                  </li>
+                  <li>Notification par courriel au bureau responsable</li>
+                  <li>Tâche accessible dans le "panier de tâches" SISTA</li>
+                </ul>
+              </div>
+
+              
+              <div
+                style="
+                  background: #f8f9fa;
+                  border-left: 5px solid #7aa395;
+                  border-radius: 10px;
+                  padding: 25px;
+                  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                "
+              >
+                <h4
+                  style="
+                    color: #1b1a1a;
+                    font-size: 1.1em;
+                    margin: 0 0 12px 0;
+                    font-weight: 600;
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                  "
+                >
+                  <span
+                    style="
+                      background: #7aa395;
+                      color: white;
+                      width: 32px;
+                      height: 32px;
+                      border-radius: 50%;
+                      display: inline-flex;
+                      align-items: center;
+                      justify-content: center;
+                      font-weight: bold;
+                      font-size: 1em;
+                      flex-shrink: 0;
+                    "
+                    >3</span
+                  >
+                  Dépôt des documents
+                </h4>
+                <ul
+                  style="
+                    margin: 0;
+                    padding-left: 44px;
+                    color: #555;
+                    line-height: 1.8;
+                  "
+                >
+                  <li>
+                    Génération d'un PDF contenant toutes les informations
+                    saisies
+                  </li>
+                  <li>Dépôt automatique dans SISTA avec les pièces jointes</li>
+                </ul>
+              </div>
+            </div>
+
+            <table class="reference-table">
+              <thead>
+                <tr>
+                  <th>Action</th>
+                  <th>Délai</th>
+                  <th>Notification</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Soumission du formulaire</td>
+                  <td>Immédiat</td>
+                  <td>Confirmation à l'écran</td>
+                </tr>
+                <tr>
+                  <td>Courriel de confirmation</td>
+                  <td>Dans les 10 minutes</td>
+                  <td>PDF + numéro de référence</td>
+                </tr>
+                <tr>
+                  <td>Création de la tâche SISTA</td>
+                  <td>Immédiat</td>
+                  <td>Courriel au bureau régional</td>
+                </tr>
+                <tr>
+                  <td>Traitement de la demande</td>
+                  <td>Variable selon le type</td>
+                  <td>Selon la procédure du bureau</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="info-box success">
+              <strong>Résultat :</strong> Dossier complet créé dans SISTA, tous
+              les documents regroupés, équipe notifiée.
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="step-card">
+          <div class="step-header" onclick="toggleStep(this)">
+            <div class="step-number">5</div>
+            <div class="step-title">
+              <h3>Recevoir la confirmation</h3>
+            </div>
+            <div class="toggle-icon">▼</div>
+          </div>
+          <div class="step-content">
+            <h4>Vous recevrez :</h4>
+            <ul>
+              <li>
+                Un message de confirmation à l'écran avec le numéro de référence
+                SISTA
+              </li>
+              <li>
+                Un courriel contenant le PDF généré et le numéro de référence
+              </li>
+            </ul>
+
+            <div class="image-container">
+              <img src="images/confirmation.png" alt="Écran de confirmation" />
+              <p style="font-size: 0.9em; color: #666; margin-top: 10px">
+                Écran de confirmation
+              </p>
+            </div>
+
+            <div class="info-box important">
+              <strong>Conservez votre numéro de référence SISTA</strong> pour
+              faire le suivi de votre demande.
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="video-section">
+          <h3>Vidéo tutoriel : Processus complet de dépôt</h3>
+          <p>
+            Suivez cette vidéo pour voir le processus du début à la fin avec des
+            exemples concrets.
+          </p>
+      
+          <div class="video-wrapper">
+            <video width="100%"   height="600px"   controls   preload="metadata"  style="border: 1px solid #ccc" >
+              <source src="images/agents-renseignements.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <p style="text-align: center; margin-top: 15px; opacity: 0.9">
+            Durée : 7 minutes
+          </p>
+        </div>
+      </div>
+
+      
+      <div id="processus-rt" class="content-section">
+        <div class="card">
+          <h2>Transformation du processus de traitement des recours</h2>
+          <p>
+            La mise en place du formulaire web pour les recours en relations de
+            travail modernise considérablement le processus de dépôt et de
+            traitement des demandes. Cette section présente l'évolution du
+            processus et les impacts pour les agents des bureaux régionaux.
+          </p>
+        </div>
+
+        <div class="card">
+          <h2>Évolution du processus : avant et après</h2>
+
+          <div class="two-columns" style="margin-top: 30px">
+            <div class="column-box" style="border-left-color: #dc3545">
+              <h3 style="color: #dc3545; margin-top: 0">⏮️ Ancien processus</h3>
+
+              <h4 style="margin-top: 20px; color: #333">
+                Du côté du justiciable :
+              </h4>
+              <ul style="line-height: 1.8">
+                <li>Télécharge le formulaire Word depuis le site web du TAT</li>
+                <li>Remplit le formulaire manuellement</li>
+                <li>
+                  Soit :
+                  <ul style="margin-top: 10px; margin-bottom: 10px">
+                    <li>
+                      Dépose le formulaire rempli dans le service en ligne du
+                      TAT <strong>Dépôt d'un acte introductif</strong>
+                    </li>
+                  </ul>
+                  Ou
+                  <ul style="margin-top: 10px; margin-bottom: 10px">
+                    <li>
+                      Envoie le formulaire rempli par
+                      <strong>courriel</strong> ou par
+                      <strong>la poste</strong> au Tribunal
+                    </li>
+                  </ul>
+                </li>
+                <li>Aucun accusé de réception immédiat</li>
+                <li>Pas de numéro de référence au moment du dépôt</li>
+              </ul>
+
+              <h4 style="margin-top: 20px; color: #333">
+                Du côté de l'agent :
+              </h4>
+              <ul style="line-height: 1.8">
+                <li>Reçoit le formulaire par poste ou par courriel</li>
+                <li>
+                  <strong>Numérise</strong> le document (si reçu par poste)
+                </li>
+                <li>
+                  <strong>Dépose manuellement</strong> le document dans SISTA
+                </li>
+                <li>Traite la tâche créée suite au dépôt de document</li>
+                <li>Complète l'ouverture du dossier</li>
+              </ul>
+
+              <div class="info-box warning" style="margin-top: 20px">
+                <h4>⚠️ Limites de l'ancien processus</h4>
+                <ul style="margin-top: 10px">
+                  <li>Délais d'acheminement postal</li>
+                  <li>Étape de numérisation manuelle</li>
+                  <li>Risque d'erreurs de saisie</li>
+                  <li>Traçabilité limitée</li>
+                  <li>Charge de travail administrative élevée</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="column-box" style="border-left-color: #28a745">
+              <h3 style="color: #28a745; margin-top: 0">
+                ⏭️ Nouveau processus
+              </h3>
+
+              <h4 style="margin-top: 20px; color: #333">
+                Du côté du justiciable :
+              </h4>
+              <ul style="line-height: 1.8">
+                <li>
+                  Remplit le
+                  <strong>formulaire de recours en ligne</strong> directement
+                  sur le site web
+                </li>
+                <li>
+                  Reçoit un
+                  <strong>numéro de référence immédiatement</strong> lors de la
+                  soumission
+                </li>
+                <li>
+                  Reçoit un
+                  <strong>accusé de réception par courriel</strong> contenant :
+                  <ul style="margin-left: 20px; margin-top: 5px">
+                    <li>Document PDF avec le résumé de ce qui a été soumis</li>
+                    <li>Numéro de référence pour le suivi</li>
+                    <li>Confirmation de la réception</li>
+                  </ul>
+                </li>
+              </ul>
+
+              <h4 style="margin-top: 20px; color: #333">
+                Du côté de l'agent :
+              </h4>
+              <ul style="line-height: 1.8">
+                <li>
+                  Reçoit une <strong>notification</strong> dans la boîte
+                  régionale
+                </li>
+                <li>
+                  Les documents sont
+                  <strong>déjà déposés dans SISTA</strong> (aucune numérisation
+                  nécessaire)
+                </li>
+                <li>
+                  Traite la tâche créée suite au dépôt en ligne de l'acte
+                  introductif
+                </li>
+                <li>Complète l'ouverture du dossier</li>
+              </ul>
+
+              <div class="info-box success" style="margin-top: 20px">
+                <h4>✅ Avantages du nouveau processus</h4>
+                <ul style="margin-top: 10px">
+                  <li>Dépôt instantané 24/7</li>
+                  <li>Aucune numérisation requise</li>
+                  <li>Données structurées et lisibles</li>
+                  <li>Traçabilité complète</li>
+                  <li>Réduction significative du travail administratif</li>
+                  <li>Meilleure expérience pour le justiciable</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Nouveaux types de documents dans SISTA</h2>
+          <p>
+            Le formulaire web introduit quatre nouveaux types de documents dans
+            SISTA pour mieux catégoriser les pièces jointes déposées par les
+            justiciables. Ces types de documents facilitent l'organisation et le
+            traitement des dossiers.
+          </p>
+
+          <div style="overflow-x: auto; margin-top: 30px">
+            <table
+              style="width: 100%; border-collapse: collapse; background: white"
+            >
+              <thead>
+                <tr style="background: #7aa395; color: white">
+                  <th
+                    style="
+                      padding: 15px;
+                      text-align: left;
+                      border: 1px solid #dee2e6;
+                      font-weight: 600;
+                    "
+                  >
+                    Type de document téléversé
+                  </th>
+                  <th
+                    style="
+                      padding: 15px;
+                      text-align: left;
+                      border: 1px solid #dee2e6;
+                      font-weight: 600;
+                    "
+                  >
+                    Formulaire web concerné
+                  </th>
+                  <th
+                    style="
+                      padding: 15px;
+                      text-align: left;
+                      border: 1px solid #dee2e6;
+                      font-weight: 600;
+                    "
+                  >
+                    Code et libellé dans SISTA
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #f8f9fa">
+                  <td style="padding: 15px; border: 1px solid #dee2e6">
+                    <strong style="color: #1b1a1a">Avis disciplinaire</strong>
+                  </td>
+                  <td style="padding: 15px; border: 1px solid #dee2e6">
+                    Plainte à l'encontre d'une pratique interdite
+                  </td>
+                  <td style="padding: 15px; border: 1px solid #dee2e6">
+                    <strong style="color: #7aa395">658 TAT</strong> – Avis
+                    disciplinaire
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 15px; border: 1px solid #dee2e6">
+                    <strong style="color: #1b1a1a"
+                      >Décision externe contestée</strong
+                    >
+                  </td>
+                  <td style="padding: 15px; border: 1px solid #dee2e6">
+                    Contestation d’une décision d’un organisme
+                  </td>
+                  <td style="padding: 15px; border: 1px solid #dee2e6">
+                    <strong style="color: #7aa395">659 TAT</strong> – Décision
+                    externe contestée
+                  </td>
+                </tr>
+                <tr style="background: #f8f9fa">
+                  <td style="padding: 15px; border: 1px solid #dee2e6">
+                    <strong style="color: #1b1a1a"
+                      >Lettre de congédiement</strong
+                    >
+                  </td>
+                  <td style="padding: 15px; border: 1px solid #dee2e6">
+                    Plainte à l'encontre d'une pratique interdite
+                  </td>
+                  <td style="padding: 15px; border: 1px solid #dee2e6">
+                    <strong style="color: #7aa395">660 TAT</strong> – Lettre de
+                    congédiement
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 15px; border: 1px solid #dee2e6">
+                    <strong style="color: #1b1a1a">Autre document</strong>
+                    <p style="margin-top: 5px; font-size: 0.9em; color: #666">
+                      Tout autre document pertinent au recours (preuves,
+                      correspondances, etc.)
+                    </p>
+                  </td>
+                  <td style="padding: 15px; border: 1px solid #dee2e6">
+                    Tous les formulaires
+                  </td>
+                  <td style="padding: 15px; border: 1px solid #dee2e6">
+                    <strong style="color: #7aa395">661 TAT</strong> – Autre
+                    document
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        
+        <div class="video-section">
+          <h3>Vidéo tutoriel : Traitement des dépôts en ligne dans SISTA</h3>
+          <div class="video-wrapper">
+             <video width="100%"   height="600px"   controls   preload="metadata"  style="border: 1px solid #ccc" >
+              <source src="images/agents-bureau.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <p style="text-align: center; margin-top: 15px; opacity: 0.9">
+            Durée : 2 minutes
+          </p>
+        </div>
+      </div>
+
+      
+      <div id="faq" class="content-section">
+        <div class="card">
+          <h2>Questions fréquemment posées</h2>
+
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <span>Combien de temps prend le processus complet ?</span>
+              <span>▼</span>
+            </div>
+            <div class="accordion-content">
+              <p>
+                Le processus complet prend généralement entre 15 et 20 minutes,
+                selon la complexité du formulaire et le nombre de documents à
+                téléverser.
+              </p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <span
+                >Peut-on sauvegarder le formulaire pour le compléter ultérieurement?
+                </span
+              >
+              <span>▼</span>
+            </div>
+            <div class="accordion-content">
+              <p>
+                Non, cette fonctionnalité n’est pas implémentée. Comme il n’y a pas d’authentification, les formulaires ne peuvent pas être sauvegardés pour être repris plus tard.
+              </p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <span
+                >Que faire si le courriel de confirmation n'arrive pas ?</span
+              >
+              <span>▼</span>
+            </div>
+            <div class="accordion-content">
+              <p>
+                Vérifiez d'abord vos courriels indésirables. Si vous ne recevez
+                toujours rien après 10 minutes, contactez le service de pilotage à l'adresse suivante servicesenligne@tat.gouv.qc.ca.
+              </p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <span>À quoi sert le numéro de référence ?</span>
+              <span>▼</span>
+            </div>
+            <div class="accordion-content">
+              <p>
+                Utilisez-le pour faire le suivi de votre demande, consulter
+                l'état d'avancement, ou pour toute communication avec le bureau régional TAT.
+              </p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <span>Puis-je modifier un formulaire après l'avoir soumis ?</span>
+              <span>▼</span>
+            </div>
+            <div class="accordion-content">
+              <p>
+                Non, une fois soumis, le formulaire est définitif. Si vous devez
+                apporter des corrections, contactez le bureau règional TAT.
+              </p>
+            </div>
+          </div>
+                   <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <span>Quels fichiers puis-je joindre à ma demande ?</span>
+              <span>▼</span>
+            </div>
+            <div class="accordion-content">
+              <p>
+                Uniquement des fichiers PDF d'une taille maximale de 100 Mo
+                chacun.Pour les fichiers volumineux, contactez le service de pilotage à l'adresse suivante servicesenligne@tat.gouv.qc.ca.              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Dépannage - Résolution des problèmes</h2>
+
+          <h3>Erreurs de validation</h3>
+          <div class="info-box warning">
+            <h4>Symptôme : Message "Retour au formulaire"</h4>
+            <p><strong>Causes possibles :</strong></p>
+            <ul>
+              <li>Champs obligatoires manquants</li>
+              <li>Format de données incorrect (ex : date invalide)</li>
+              <li>Signature électronique manquante</li>
+              <li>Pièce jointe obligatoire non téléversée</li>
+              <li>Fichiers trop volumineux (>100 Mo)</li>
+            </ul>
+            <p>
+              <strong>Solution :</strong> Les champs problématiques sont
+              surlignés en rouge. Corrigez-les et soumettez à nouveau.
+            </p>
+          </div>
+
+          <h3>Erreurs système</h3>
+          <div class="info-box warning">
+            <h4>Symptôme : Message "Erreur système"</h4>
+            <p><strong>Causes possibles :</strong></p>
+            <ul>
+              <li>Problème temporaire du serveur</li>
+              <li>Erreur lors de la génération du PDF</li>
+              <li>Connexion internet interrompue</li>
+            </ul>
+            <p><strong>Solutions :</strong></p>
+            <ol>
+              <li>Attendez 2-3 minutes et réessayez</li>
+              <li>Vérifiez votre connexion internet</li>
+              <li>Rafraîchissez la page (F5)</li>
+              <li>Si le problème persiste, contactez le support technique</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      
+      <div id="glossaire" class="content-section">
+        
+      </div>
+    </div>
+
+    
+    <div class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</div>
+
+    <script>
+      function showTab(tabId) {
+        const sections = document.querySelectorAll(".content-section");
+        sections.forEach((section) => section.classList.remove("active"));
+
+        const buttons = document.querySelectorAll(".tab-btn");
+        buttons.forEach((btn) => btn.classList.remove("active"));
+
+        document.getElementById(tabId).classList.add("active");
+        event.currentTarget.classList.add("active");
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function toggleStep(header) {
+        const card = header.parentElement;
+        const isActive = card.classList.contains("active");
+
+        const headerRect = header.getBoundingClientRect();
+        const headerTop = headerRect.top;
+
+        document.querySelectorAll(".step-card").forEach((c) => {
+          c.classList.remove("active");
+        });
+
+        if (!isActive) {
+          card.classList.add("active");
+
+          requestAnimationFrame(() => {
+            const newHeaderRect = header.getBoundingClientRect();
+            const newHeaderTop = newHeaderRect.top;
+            const scrollAdjustment = newHeaderTop - headerTop;
+
+            window.scrollBy(0, scrollAdjustment);
+          });
+        }
+      }
+
+      function toggleAccordion(header) {
+        const content = header.nextElementSibling;
+        const isActive = content.classList.contains("active");
+
+        document.querySelectorAll(".accordion-content").forEach((c) => {
+          c.classList.remove("active");
+        });
+
+        if (!isActive) {
+          content.classList.add("active");
+        }
+      }
+
+      window.addEventListener("scroll", function () {
+        const backToTop = document.getElementById("backToTop");
+        if (window.pageYOffset > 300) {
+          backToTop.classList.add("show");
+        } else {
+          backToTop.classList.remove("show");
+        }
+      });
+
+      function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      document
+        .querySelectorAll('.checklist-item input[type="checkbox"]')
+        .forEach((checkbox) => {
+          checkbox.addEventListener("change", function () {
+            localStorage.setItem(this.id, this.checked);
+          });
+
+          const saved = localStorage.getItem(checkbox.id);
+          if (saved === "true") {
+            checkbox.checked = true;
+          }
+        });
+    </script>
+  </body>
+</html>
